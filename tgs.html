@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Studio - Création Audiovisuelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #ffd700;
+            --light: #f8f9fa;
+            --dark: #0f0f1a;
+            --gray: #6c757d;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--gold);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--gold), #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 0 6rem;
+            background: linear-gradient(rgba(10, 10, 20, 0.8), rgba(10, 10, 20, 0.9)), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #e0e0e0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), #ff6b8b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--secondary);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: var(--gold);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            background: var(--secondary);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 0;
+            background: var(--primary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--gold);
+            border: 3px solid var(--gold);
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-member p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 1;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--primary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #b0b0b0;
+        }
+
+        .contact-form {
+            background: var(--secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark);
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--secondary);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--light);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-poster {
+            background: var(--dark);
+            border-radius: 8px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--gold);
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .project-info .synopsis {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            background: var(--dark);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .meta-item .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-item .value {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🎬</div>
+                    <div class="logo-text">THE GRAND STUDIO</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#equipe">Équipe</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Création Audiovisuelle d'Exception</h1>
+                <p>Votre studio de production créative pour publicités, films, animations et mangas. Nous donnons vie à vos idées avec passion et expertise.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" id="view-portfolio-btn">
+                        <i class="fas fa-play-circle"></i> Voir nos réalisations
+                    </button>
+                    <button class="btn btn-secondary" id="discuss-project-btn">
+                        <i class="fas fa-comments"></i> Discuter de votre projet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Domaines d'Expertise</h2>
+                <p>Des solutions créatives complètes pour tous vos projets audiovisuels</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Production de Films</h3>
+                    <p>Court et long métrages réalisés avec une vision artistique unique et une qualité cinématographique exceptionnelle.</p>
+                    <a href="#" class="service-link">
+                        Voir nos films <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>Publicités & Branding</h3>
+                    <p>Création de campagnes publicitaires percutantes qui marquent les esprits et renforcent l'identité de marque.</p>
+                    <a href="#" class="service-link">
+                        Découvrir <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-draw-polygon"></i>
+                    </div>
+                    <h3>Animation & Mangas</h3>
+                    <p>Production d'animations 2D/3D et création de mangas originaux avec des styles artistiques distinctifs.</p>
+                    <a href="#" class="service-link">
+                        Explorer <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3>Scénarisation & Storyboarding</h3>
+                    <p>Développement de scénarios captivants et création de storyboards détaillés pour structurer vos récits.</p>
+                    <a href="#" class="service-link">
+                        En savoir plus <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Réalisations</h2>
+                <p>Découvrez une sélection de nos projets les plus marquants</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="film">Films</button>
+                <button class="filter-btn" data-filter="serie">Séries</button>
+                <button class="filter-btn" data-filter="animation">Animations</button>
+                <button class="filter-btn" data-filter="manga">Mangas</button>
+            </div>
+            <div class="portfolio-grid" id="portfolio-container">
+                <!-- Portfolio items will be added dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="equipe">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Équipe Créative</h2>
+                <p>Des talents passionnés réunis pour donner vie à vos projets</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>a venir</h3>
+                    <div class="role">Directeur Créatif</div>
+                    <p>Des expérience dans la production audiovisuelle et la direction artistique.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>A savoir</h3>
+                    <div class="role">Scénariste en Chef</div>
+                    <p>Auteur de plusieurs scénarios primés et spécialiste en développement narratif.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>je ne sais pas</h3>
+                    <div class="role">Directeur Animation</div>
+                    <p>Expert en animation 2D/3D et création d'univers visuels uniques.</p>
+                </div>
+                 <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>inconnue</h3>
+                    <div class="role">Cameraman</div>
+                    <p>Expert en filmage et cadrage</p>
+                </div>
+                 <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>a Voir</h3>
+                    <div class="role">Monteur vidéo </div>
+                    <p>Des effets visuel et sonore du projet</p>
+                </div>
+                 <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Qui est ce</h3>
+                    <div class="role">R.H</div>
+                    <p>Gestion des equipes </p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>ouriel ANDRINIAINA</h3>
+                    <div class="role">Producteur Exécutive</div>
+                    <p>Gestion de production et coordination des projets de A à Z.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Processus Créatif</h2>
+                <p>Une méthodologie éprouvée pour transformer vos idées en réalisations exceptionnelles</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Conceptualisation</h3>
+                    <p>Échange et développement de votre idée initiale en concept créatif solide.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Préproduction</h3>
+                    <p>Scénarisation, storyboarding, planification et préparation technique.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Production</h3>
+                    <p>Tournage, animation ou création selon les spécifications du projet.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Post-production</h3>
+                    <p>Montage, effets visuels, sound design et finalisation du projet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Discutons de Votre Projet</h2>
+                <p>Prêt à donner vie à votre vision créative ? Contactez-nous dès aujourd'hui.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Notre Studio</h3>
+                            <p>102 , Andoharanofotsy , Antananarivo , Madagascar</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <p>+261 32 50 115 16</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>andriniainaouriel2@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Horaires</h3>
+                            <p>Lun - Ven: 9h - 18h<br>Sam: 10h - 16h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="project-form">
+                        <div class="form-group">
+                            <label for="name">Votre Nom</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Votre Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Type de Projet</label>
+                            <select id="project-type" class="form-control" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="film">Film</option>
+                                <option value="pub">Publicité</option>
+                                <option value="animation">Animation</option>
+                                <option value="manga">Manga</option>
+                                <option value="scenario">Scénarisation</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Décrivez Votre Projet</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Envoyer Votre Projet
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>THE GRAND STUDIO</h3>
+                    <p>Votre partenaire créatif pour des productions audiovisuelles d'exception. Donnons vie à vos idées ensemble.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Nos Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Production de Films</a></li>
+                        <li><a href="#">Publicités & Branding</a></li>
+                        <li><a href="#">Animation & Mangas</a></li>
+                        <li><a href="#">Scénarisation</a></li>
+                        <li><a href="#">Storyboarding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens Utiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">À Propos</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Équipe</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Carrières</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Prendre Rendez-vous</a></li>
+                        <li><a href="#">Devis Gratuit</a></li>
+                        <li><a href="#">Support Client</a></li>
+                        <li><a href="#">Espace Presse</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 THE GRAND STUDIO. Tous droits réservés. | </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div class="modal" id="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Détails du Projet</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données des projets
+        const projects = [
+            {
+                id: 1,
+                title: "Cyber Néant: The Revolution of AI",
+                category: "film",
+                synopsis: "Dans un futur proche, Evelyn, une jeune prodige de la technologie, découvre qu'un laboratoire secret à Cambridge développe une IA capable de détruire l'humanité. Avec l'aide de son organisation clandestine et de ses inventions révolutionnaires, elle se lance dans une course contre la montre pour infiltrer le laboratoire et empêcher l'apocalypse numérique. Mais chaque pas vers la vérité la rapproche d'un secret bien plus terrifiant...",
+                type: "Long métrage",
+                status: "En développement",
+                genre: "Science-Fiction, Thriller",
+                icon: "fas fa-robot"
+            },
+            {
+                id: 2,
+                title: "Plants vs Zombies: La Famille Botanique en Panique",
+                category: "film",
+                synopsis: "Quand une épidémie zombie dévaste leur ville, la famille Green, botanistes et fleuristes passionnés, se retrouve piégée dans leur propre maison. Alors que l'armée échoue à contenir la menace, ils découvrent que leurs plantes ont développé des capacités défensives extraordinaires. Tournesols tireurs, pois géants et champignons explosifs deviennent leurs seules armes contre l'invasion mort-vivante. Une bataille hilarante et mouvementée pour la survie commence dans leur jardin !",
+                type: "Live Action",
+                status: "En préproduction",
+                genre: "Comédie, Horreur",
+                icon: "fas fa-seedling"
+            },
+            {
+                id: 3,
+                title: "Soldats de l'Amour",
+                category: "film",
+                synopsis: "Quatre jeunes fraîchement diplômés s'engagent pour servir leur pays, unis par l'idéal et le devoir. Au cœur des missions périlleuses, leur fraternité se forge dans l'adversité. L'arrivée d'une jeune femme dans leur unité bouleverse les équilibres et fait naître des sentiments inattendus. Quand elle doit les quitter, chacun doit faire face à ses émotions. Mais le destin les réunit dans des circonstances inattendues, et c'est alors que leur véritable histoire d'amour et de sacrifice commence...",
+                type: "Long métrage",
+                status: "En développement",
+                genre: "Drame, Romance",
+                icon: "fas fa-heart"
+            },
+            {
+                id: 4,
+                title: "Prédiction",
+                category: "serie",
+                synopsis: "Maya, étudiante en informatique, télécharge par curiosité un programme viral qui prédit la date de mort de chaque être humain. Horrifiée, elle découvre qu'il ne lui reste que 72 heures à vivre. Refusant son destin, elle se lance dans une course contre la montre pour comprendre l'origine du programme et déjouer la prédiction. Mais chaque tentative de changer son futur semble rapprocher sa mort, et elle réalise qu'elle défie des forces bien plus grandes qu'elle ne l'imaginait...",
+                type: "Série Thriller",
+                status: "En écriture",
+                genre: "Thriller, Science-Fiction",
+                icon: "fas fa-hourglass-end"
+            },
+            {
+                id: 5,
+                title: "Andoharanofotsy City",
+                category: "serie",
+                synopsis: "Dans la mégalopole d'Andoharanofotsy, un projet ambitieux de purification de l'air a mal tourné, libérant un virus qui transforme les humains en créatures contaminées et agressives. Cinq jeunes survivants, aux compétences complémentaires, doivent tenir 48 heures en attendant les secours. Mais l'air devient de plus en plus toxique, et la terreur se propage au simple contact. Chaque respiration peut être la dernière dans cette lutte désespérée pour la survie...",
+                type: "Série Post-Apocalyptique",
+                status: "En développement",
+                genre: "Horreur, Survival",
+                icon: "fas fa-skull-crossbones"
+            },
+            {
+                id: 6,
+                title: "Jetez-vous à l'Eau",
+                category: "animation",
+                synopsis: "Swampy, un alligator maniaque de propreté, rêve seulement de prendre un bon bain. Mais quand l'eau de la ville disparaît mystérieusement, c'est le début d'une aventure palpitante ! Aidé de son fidèle canard en plastique et d'une bande d'enfants déterminés, il doit creuser des tunnels, éviter les pièges ingénieux et résoudre des énigmes pour ramener l'eau dans les tuyaux. Une course contre la montre rafraîchissante et pleine d'humour, où l'amitié et la persévérance sont les meilleures armes !",
+                type: "Série d'Animation",
+                status: "En production",
+                genre: "Aventure, Comédie",
+                icon: "fas fa-shower"
+            },
+            {
+                id: 7,
+                title: "Tenshi to Akuma no Gakuen",
+                category: "manga",
+                synopsis: "Bienvenue à l'Académie Céleste, une école secrète où cohabitent des humains dotés de pouvoirs angéliques ou démoniaques. Dans cet équilibre fragile entre lumière et ténèbres, de nouvelles menaces émergent des ombres du passé. Entre romance naissante et confrontations surnaturelles, les étudiants doivent s'unir pour protéger leur monde alors que des secrets ancestres refont surface, menaçant de tout détruire...",
+                type: "Série de Manga",
+                status: "En publication",
+                genre: "Surnaturel, Romance",
+                icon: "fas fa-feather-alt"
+            },
+            {
+                id: 8,
+                title: "Unmei no Keishōsha - Les Héritiers du Destin",
+                category: "manga",
+                synopsis: "Leur famille portait depuis des générations le poids de la lumière sur ses épaules, protecteurs d'un équilibre millénaire. Mais le mal les a brisés, les dispersant aux quatre coins du monde. Aujourd'hui, les derniers héritiers, dotés de pouvoirs ancestraux qu'ils maîtrisent à peine, doivent se lever. Apprendre, grandir, s'unir malgré leurs différences pour sauver un monde au bord du chaos. Leur combat ne fait que commencer, et chaque choix pourrait sceller le destin de l'humanité...",
+                type: "Série de Manga",
+                status: "En publication",
+                genre: "Action, Fantastique",
+                icon: "fas fa-crown"
+            }
+        ];
+
+        // Éléments DOM
+        const portfolioContainer = document.getElementById('portfolio-container');
+        const projectModal = document.getElementById('project-modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalTitle = document.getElementById('modal-title');
+        const closeModal = document.querySelector('.close-modal');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const viewPortfolioBtn = document.getElementById('view-portfolio-btn');
+        const discussProjectBtn = document.getElementById('discuss-project-btn');
+        const contactSection = document.getElementById('contact');
+
+        // Initialisation
+        function init() {
+            renderPortfolio(projects);
+            setupEventListeners();
+        }
+
+        // Rendu du portfolio
+        function renderPortfolio(projectsToRender) {
+            portfolioContainer.innerHTML = '';
+            
+            projectsToRender.forEach(project => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item';
+                portfolioItem.setAttribute('data-category', project.category);
+                portfolioItem.setAttribute('data-id', project.id);
+                
+                // Couleur différente selon la catégorie
+                let gradient;
+                switch(project.category) {
+                    case 'film':
+                        gradient = 'linear-gradient(45deg, #e94560, #ff6b8b)';
+                        break;
+                    case 'serie':
+                        gradient = 'linear-gradient(45deg, #4e54c8, #8f94fb)';
+                        break;
+                    case 'animation':
+                        gradient = 'linear-gradient(45deg, #ffd700, #ffed4e)';
+                        break;
+                    case 'manga':
+                        gradient = 'linear-gradient(45deg, #1a1a2e, #16213e)';
+                        break;
+                    default:
+                        gradient = 'linear-gradient(45deg, #1a1a2e, #16213e)';
+                }
+                
+                portfolioItem.innerHTML = `
+                    <div class="portfolio-image" style="background: ${gradient}; display: flex; align-items: center; justify-content: center; color: ${project.category === 'animation' ? '#1a1a2e' : 'white'};">
+                        <i class="${project.icon}" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>${project.title}</h3>
+                        <p>${project.type}</p>
+                    </div>
+                `;
+                
+                portfolioContainer.appendChild(portfolioItem);
+            });
+        }
+
+        // Configuration des événements
+        function setupEventListeners() {
+            // Filtres du portfolio
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Mettre à jour les boutons actifs
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filtrer les éléments du portfolio
+                    const portfolioItems = document.querySelectorAll('.portfolio-item');
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Ouvrir les détails d'un projet
+            document.addEventListener('click', (e) => {
+                const portfolioItem = e.target.closest('.portfolio-item');
+                if (portfolioItem) {
+                    const projectId = parseInt(portfolioItem.getAttribute('data-id'));
+                    openProjectModal(projectId);
+                }
+            });
+            
+            // Bouton "Voir nos réalisations"
+            viewPortfolioBtn.addEventListener('click', () => {
+                document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Bouton "Discuter de votre projet"
+            discussProjectBtn.addEventListener('click', () => {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Fermer la modal
+            closeModal.addEventListener('click', () => {
+                projectModal.style.display = 'none';
+            });
+            
+            // Fermer la modal en cliquant à l'extérieur
+            window.addEventListener('click', (e) => {
+                if (e.target === projectModal) {
+                    projectModal.style.display = 'none';
+                }
+            });
+            
+            // Gestion du formulaire de contact
+            const projectForm = document.getElementById('project-form');
+            projectForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Merci pour votre message ! Nous vous contacterons bientôt pour discuter de votre projet.');
+                projectForm.reset();
+            });
+        }
+
+        // Ouvrir la modal des détails du projet
+        function openProjectModal(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            
+            if (!project) return;
+            
+            modalTitle.textContent = project.title;
+            
+            // Déterminer la couleur selon la catégorie
+            let color;
+            switch(project.category) {
+                case 'film':
+                    color = '#e94560';
+                    break;
+                case 'serie':
+                    color = '#4e54c8';
+                    break;
+                case 'animation':
+                    color = '#ffd700';
+                    break;
+                case 'manga':
+                    color = '#1a1a2e';
+                    break;
+                default:
+                    color = '#1a1a2e';
+            }
+            
+            modalBody.innerHTML = `
+                <div class="project-details">
+                    <div class="project-poster" style="background: ${color}; color: ${project.category === 'animation' ? '#1a1a2e' : 'white'}">
+                        <i class="${project.icon}" style="font-size: 5rem;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <div class="synopsis">${project.synopsis}</div>
+                        
+                        <div class="project-meta">
+                            <div class="meta-item">
+                                <div class="label">Type</div>
+                                <div class="value">${project.type}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="label">Statut</div>
+                                <div class="value">${project.status}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="label">Genre</div>
+                                <div class="value">${project.genre}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="label">Catégorie</div>
+                                <div class="value">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" id="interest-btn">
+                        <i class="fas fa-info-circle"></i> En savoir plus sur ce projet
+                    </button>
+                </div>
+            `;
+            
+            // Ajouter l'événement pour le bouton d'intérêt
+            const interestBtn = document.getElementById('interest-btn');
+            interestBtn.addEventListener('click', () => {
+                alert(`Merci de votre intérêt pour "${project.title}" ! Nous vous contacterons pour discuter de ce projet.`);
+                projectModal.style.display = 'none';
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            projectModal.style.display = 'flex';
+        }
+
+        // Initialiser l'application
+        init();
+    </script>
+</body>
+</html>
